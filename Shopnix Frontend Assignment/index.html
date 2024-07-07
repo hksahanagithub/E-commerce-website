@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopnix Store </title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <style>
+        /* Custom CSS styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #00aaff;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #00aaff;
+        }
+        .navbar a {
+            padding: 14px 20px;
+            display: block;
+            color: white;
+            text-align: center;
+            text-decoration: none;
+        }
+        .navbar a:hover {
+            background-color: #ffffff;
+        }
+        .container {
+            text-align: center;
+            padding: 50px;
+        }
+        .button {
+            padding: 10px 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            cursor: pointer;
+            margin: 10px;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+        .theme-selection, .product-selection, .product-details {
+            display: none;
+        }
+        .product-form-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 50px;
+            background-color: #f9f9f9;
+            border: 1px solid #e9e9e9;
+            border-radius: 8px;
+        }
+        .product-form {
+            flex: 1;
+            margin-right: 20px;
+        }
+        .product-image {
+            flex: 1;
+            text-align: center;
+        }
+        .product-image img {
+            max-width: 100%;
+            border-radius: 8px;
+        }
+        .theme-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .theme {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            padding: 10px;
+            width: 250px;
+            text-align: center;
+            background-color: #f8f8f8;
+            position: relative;
+        }
+        .theme img {
+            width: 100%;
+            border-radius: 8px;
+        }
+        .theme button {
+            margin-top: 10px;
+        }
+        .theme .tick-mark {
+            display: none;
+            color: green;
+            font-size: 24px;
+            position: absolute;
+            top: 10px;
+            right: 10px;
+        }
+        .modal-header {
+            border-bottom: none;
+        }
+        .modal-footer {
+            border-top: none;
+        }
+    </style>
+    
+    
+    
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <a class="navbar-brand" href="#">
+                <img src="images/images.jpg" height="100" width="100" style="position: relative; top: 0px; left: 0px;">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/product.html">Products</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/about.html">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="pages/contact.html">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Launch Your Online Store Today</h1>
+        <p class="lead">Grow your revenue by 30%. Web store, Facebook store, Android Store App, and iOS Store App. Free Trial.</p>
+        <a href="#" id="create-store-btn" class="btn btn-primary btn-lg" role="button" data-toggle="modal" data-target="#createStoreModal">Create Store</a>
+        <a href="#" class="btn btn-secondary btn-lg" role="button">Schedule a Demo</a>
+        <img src="images/img1.jpg" width="1000" style="display: block; margin-left: auto; margin-right: auto; margin-top: 20px;">
+    </div>
+
+    <!-- Create Store Modal -->
+    <div class="modal fade" id="createStoreModal" tabindex="-1" aria-labelledby="createStoreModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createStoreModalLabel">Create Store</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="createStoreForm">
+                        <div class="form-group">
+                            <label for="storeName">Store name</label>
+                            <input type="text" class="form-control" id="storeName" placeholder="Eg: Morning Flowers, BSK Shoes" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email address</label>
+                            <input type="email" class="form-control" id="email" placeholder="name@example.com" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="password">New password</label>
+                            <input type="password" class="form-control" id="password" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mobile">Your Mobile</label>
+                            <input type="text" class="form-control" id="mobile" placeholder="We will send an OTP to your number" required>
+                        </div>
+                        <button type="button" class="btn btn-primary" id="sendOtpBtn">Send OTP</button>
+                        <div class="form-group mt-3" id="otpField" style="display: none;">
+                            <label for="otp">Enter OTP</label>
+                            <input type="text" class="form-control" id="otp" required>
+                        </div>
+                        <button type="submit" class="btn btn-success" id="startBtn" style="display: none;">START</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container theme-selection" id="theme-page">
+        <h1>Let's Customize Your Shopnix Store</h1>
+        <h2>Apply a theme</h2>
+        <div class="theme-container">
+            <div class="theme" data-theme="bags">
+                <img src="images/bags.jpg" alt="Bags Theme">
+                <p>Bags theme (recommended)</p>
+                <button class="btn btn-primary apply-theme">Apply</button>
+                <span class="tick-mark">&#10003;</span>
+            </div>
+            <div class="theme" data-theme="flex">
+                <img src="images/flex.jpg" alt="Flex Theme">
+                <p>Flex theme</p>
+                <button class="btn btn-primary apply-theme">Apply</button>
+                <span class="tick-mark">&#10003;</span>
+            </div>
+            <div class="theme" data-theme="chic">
+                <img src="images/chic.jpg" alt="Chic Theme">
+                <p>Chic theme</p>
+                <button class="btn btn-primary apply-theme">Apply</button>
+                <span class="tick-mark">&#10003;</span>
+            </div>
+        </div>
+        <button id="next-btn" class="btn btn-success" style="margin-top: 20px;">Next</button>
+    </div>
+
+    <div class="container product-selection" id="product-page">
+        <h1>Let's add a type, Category and Sub-category</h1>
+        <div class="product-form-container">
+            <div class="product-form">
+                <form>
+                    <label for="product-type">Add a product type:</label><br>
+                    <input type="text" id="product-type" name="product-type" placeholder="e.g., books" class="form-control"><br>
+                    <label for="category">Add a Category:</label><br>
+                    <input type="text" id="category" name="category" placeholder="e.g., Competetive exam books" class="form-control"><br>
+                    <label for="sub-category">Add a Sub-category:</label><br>
+                    <input type="text" id="sub-category" name="sub-category" placeholder="e.g., UPSC" class="form-control"><br>
+                    <div class="buttons">
+                        <button class="button" type="button">Back</button>
+                        <button class="button" type="next">Next</button>
+                    </div>
+                
+                </form>
+            </div>
+            <div class="product-image">
+                <img src="images/imag2.png" alt="Product Image">
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="container product-details" id="product-details-page">
+        <h1>Let's add your first product</h1>
+        <div class="product-form-container">
+            <div class="product-form scrollable">
+                <form>
+                    <h2>Basic Details</h2>
+                    <div class="form-section">
+                        <label for="product-name">Product name</label>
+                        <input type="text" id="product-name" name="product-name" placeholder="e.g., anatomy book" class="form-control">
+                    </div>
+                    <div class="form-section">
+                        <label for="product-description">Product Description</label>
+                        <textarea id="product-description" name="product-description" class="form-control" rows="3"></textarea>
+                    </div>
+                    <div class="form-section">
+                        <label for="product-image">Add Image(s)</label>
+                        <input type="file" id="product-image" name="product-image" class="form-control-file">
+                    </div>
+                    <div class="form-section">
+                        <input type="checkbox" id="sku-code-checkbox" name="sku-code-checkbox">
+                        <label for="sku-code-checkbox">This product has an SKU code</label>
+                        <input type="text" id="sku-code" name="sku-code" placeholder="e.g., 12345" class="form-control">
+                    </div>
+                    <h2>Pricing</h2>
+                    <div class="form-section">
+                        <label for="price">Price</label>
+                        <input type="text" id="price" name="price" placeholder="e.g., 1000" class="form-control">
+                    </div>
+                    <div class="form-section">
+                        <label for="discount">Discount</label>
+                        <input type="text" id="discount" name="discount" placeholder="e.g., 10%" class="form-control">
+                    </div>
+                    <div class="form-section">
+                        <label for="quantity">Quantity</label>
+                        <input type="number" id="quantity" name="quantity" placeholder="e.g., 50" class="form-control">
+                    </div>
+                    <h2>Product Variants</h2>
+                    <div class="form-section">
+                        <input type="checkbox" id="variant-checkbox" name="variant-checkbox">
+                        <label for="variant-checkbox">This product has multiple options, like different sizes or colors</label>
+                    </div>
+                    <div class="form-section">
+                        <label for="variant-type">Variant Type</label>
+                        <input type="text" id="variant-type" name="variant-type" placeholder="e.g., size, color" class="form-control">
+                    </div>
+                    <div class="form-section">
+                        <label for="variant-options">Variant Options</label>
+                        <input type="text" id="variant-options" name="variant-options" placeholder="e.g., small, medium, large" class="form-control">
+                    </div>
+                    <div class="form-section">
+                        <button class="button" type="button">Back</button>
+                        <button class="button" type="submit">Add Product</button>
+                    </div>
+                </form>
+            </div>
+            <div class="product-image">
+                <img src="images/product1.png" alt="Product Details">
+            </div>
+        </div>
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="script.js"></script>
+    <script>
+        
+        $(document).ready(function() {
+            $('#sendOtpBtn').click(function() {
+                // Simulate sending OTP and show OTP field
+                alert('OTP sent to your mobile number');
+                $('#otpField').show();
+                $('#startBtn').show();
+            });
+
+            $('#createStoreForm').submit(function(e) {
+                e.preventDefault();
+                $('#createStoreModal').modal('hide');
+                $('#theme-page').show();
+            });
+
+            $('.apply-theme').click(function() {
+                $('.tick-mark').hide();
+                $(this).siblings('.tick-mark').show();
+                $('.apply-theme').text('Apply');
+                $(this).text('Applied');
+                selectedTheme = $(this).closest('.theme').data('theme');
+            });
+
+            $('#next-btn').click(function() {
+                $('#theme-page').hide();
+                $('#product-page').show();
+            });
+
+            $('#submit-product').click(function() {
+                $('#product-page').hide();
+                $('#product-details-page').show();
+            });
+        });
+        // JavaScript for button interactions
+        document.getElementById('create-store-btn').addEventListener('click', function() {
+            document.querySelector('.jumbotron').style.display = 'none';
+            document.getElementById('theme-page').style.display = 'block';
+        });
+
+        document.querySelectorAll('.apply-theme').forEach(item => {
+            item.addEventListener('click', function() {
+                document.querySelectorAll('.apply-theme').forEach(btn => {
+                    btn.nextElementSibling.style.display = 'none';
+                });
+                this.nextElementSibling.style.display = 'inline';
+                this.closest('.theme').style.backgroundColor = '#d4edda';
+            });
+        });
+
+        document.getElementById('next-btn').addEventListener('click', function() {
+            document.getElementById('theme-page').style.display = 'none';
+            document.getElementById('product-page').style.display = 'block';
+        });
+
+        document.querySelector('#product-page form').addEventListener('submit', function(event) {
+            event.preventDefault();
+            document.getElementById('product-page').style.display = 'none';
+            document.getElementById('product-details-page').style.display = 'block';
+        });
+
+    document.getElementById('next-1').addEventListener('click', function() {
+        document.getElementById('step-1').classList.remove('active');
+        document.getElementById('step-2').classList.add('active');
+    });
+
+    document.getElementById('productImage').addEventListener('change', function(event) {
+        const reader = new FileReader();
+        reader.onload = function(){
+            const preview = document.getElementById('productImagePreview');
+            preview.src = reader.result;
+            preview.style.display = 'block';
+        }
+        reader.readAsDataURL(event.target.files[0]);
+    });
+
+    document.getElementById('addProduct').addEventListener('click', function() {
+        const productType = document.getElementById('productType').value;
+        const category = document.getElementById('category').value;
+        const subcategory = document.getElementById('subcategory').value;
+        const productName = document.getElementById('productName').value;
+        const productDescription = document.getElementById('productDescription').value;
+        const skuCode = document.getElementById('skuCode').value;
+        const netPrice = document.getElementById('netPrice').value;
+        const listPrice = document.getElementById('listPrice').value;
+        const discountPercentage = document.getElementById('discountPercentage').value;
+        const gstRate = document.getElementById('gstRate').value;
+        const shippingCharges = document.getElementById('shippingCharges').value;
+        const stockLevel = document.getElementById('stockLevel').value;
+
+        const productImage = document.getElementById('productImage').files[0];
+        const productImagePreview = document.getElementById('productImagePreview').src;
+
+        document.getElementById('displayProductType').innerText = 'Product Type: ' + productType;
+        document.getElementById('displayCategory').innerText = 'Category: ' + category;
+        document.getElementById('displaySubcategory').innerText = 'Subcategory: ' + subcategory;
+        document.getElementById('displayProductName').innerText = 'Product Name: ' + productName;
+        document.getElementById('displayProductDescription').innerText = 'Product Description: ' + productDescription;
+        document.getElementById('displaySkuCode').innerText = 'SKU Code: ' + skuCode;
+        document.getElementById('displayNetPrice').innerText = 'Net Price: ' + netPrice;
+        document.getElementById('displayListPrice').innerText = 'List Price: ' + listPrice;
+        document.getElementById('displayDiscountPercentage').innerText = 'Discount Percentage: ' + discountPercentage;
+        document.getElementById('displayGstRate').innerText = 'GST Rate: ' + gstRate;
+        document.getElementById('displayShippingCharges').innerText = 'Shipping Charges: ' + shippingCharges;
+        document.getElementById('displayStockLevel').innerText = 'Stock Level: ' + stockLevel;
+
+        const displayProductImage = document.getElementById('displayProductImage');
+        displayProductImage.src = productImagePreview;
+        displayProductImage.style.display = 'block';
+
+        document.getElementById('step-2').classList.remove('active');
+        document.getElementById('step-3').classList.add('active');
+    });
+</script> 
+</body>
+</html>
