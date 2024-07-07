@@ -1,8 +1,6 @@
 # E-commerce-website
 Project on Web Development
 
-# Shopnix E-commerce Website Clone
-
 Project Overview
 
 This project aims to clone the Shopnix e-commerce website using front-end technologies like HTML, CSS, and JavaScript. It includes functionalities such as creating a store,  themes, and adding products to the store.
